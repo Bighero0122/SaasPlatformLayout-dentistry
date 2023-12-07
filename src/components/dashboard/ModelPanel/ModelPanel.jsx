@@ -1,5 +1,5 @@
 import { Canvas } from "@react-three/fiber";
-import { Suspense, useRef, useState } from "react";
+import { Suspense, useRef, useState, React } from "react";
 import {
     CameraControls,
     useFBX,
@@ -10,7 +10,6 @@ import { state } from "../../../store";
 import { WheelPanel } from "../WheelPanel/WheelPanel";
 import { LayerPanel } from "../LayerPanel/LayerPanel";
 import { ViewPanel } from "../ViewPanel/ViewPanel";
-import { PanelSlider } from "../PanelSlider/PanelSlider";
 
 const DEG45 = Math.PI / 2;
 
@@ -32,7 +31,7 @@ const Scene = () => {
     return <primitive object={fbx} scale={0.1} />
 };
 
-export const ModelPanel = (props) => {
+export const ModelPanel = () => {
     const cameraControlRef = useRef();
     const rotate_face_right = () => {
         cameraControlRef.current?.reset(true);

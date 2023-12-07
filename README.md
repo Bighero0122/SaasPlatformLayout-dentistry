@@ -17,8 +17,6 @@ Currently, two official plugins are available:
 
 `npm run dev`
 
-## About the Application
+## About the Platform
 
-`/ : register page`
-
-`/dashboard : dashboard Page`
+In this Saas platform, I implemented all requirements and tasks of figma design and furthermore, added a 3d model using three.js.I implemented the 3d fbx model into Canvas from react-three/fiber so that this layout could show the reality.In this layout, there is a wheel panel at the bottom of the canvas.It has 5 controllers and this can control the view of the 3d face model.Of course, even though 3d model is very simple and it does not have a teeth model,  I tried to implement the idea of dentistry service of Modontics.
