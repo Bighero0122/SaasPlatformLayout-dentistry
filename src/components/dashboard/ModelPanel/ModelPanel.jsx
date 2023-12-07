@@ -1,5 +1,5 @@
 import { Canvas } from "@react-three/fiber";
-import { Suspense, useRef} from "react";
+import { Suspense, useRef, useState } from "react";
 import {
     CameraControls,
     useFBX,
@@ -7,6 +7,12 @@ import {
 import * as THREE from 'three';
 import { useSnapshot } from "valtio";
 import { state } from "../../../store";
+import { WheelPanel } from "../WheelPanel/WheelPanel";
+import { LayerPanel } from "../LayerPanel/LayerPanel";
+import { ViewPanel } from "../ViewPanel/ViewPanel";
+import { PanelSlider } from "../PanelSlider/PanelSlider";
+
+const DEG45 = Math.PI / 2;
 
 const Scene = () => {
     const snap = useSnapshot(state);
@@ -26,9 +32,21 @@ const Scene = () => {
     return <primitive object={fbx} scale={0.1} />
 };
 
-export const ModelPanel = () => {
+export const ModelPanel = (props) => {
     const cameraControlRef = useRef();
-   return (
+    const rotate_face_right = () => {
+        cameraControlRef.current?.reset(true);
+        cameraControlRef.current?.rotate(-DEG45, 0, true);
+    }
+    const rotate_face_left = () => {
+        cameraControlRef.current?.reset(true);
+        cameraControlRef.current?.rotate(DEG45, 0, true);
+    }
+    const rotate_face_reset = () => {
+        cameraControlRef.current?.reset(true);
+    }
+    const [isPanelSlider, setPanelSlider] = useState('true') ;
+    return (
         <>
             <Canvas
                 id="area"
@@ -54,6 +72,12 @@ export const ModelPanel = () => {
                     <Scene />
                 </Suspense>             
             </Canvas>
+            <LayerPanel 
+                isPanelSlider={isPanelSlider}
+                setPanelSlider={setPanelSlider}
+            />
+            <ViewPanel />
+            <WheelPanel rotateLeft={rotate_face_left} rotateRight={rotate_face_right} rotateReset={rotate_face_reset} />
         </>
     );
 };
