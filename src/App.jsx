@@ -1,4 +1,5 @@
 import React from 'react';
+import withLayout from './components/layout/Layout';
 import { Dashboard, Notfound } from './pages';
 import { Route, Routes } from 'react-router-dom';
 
@@ -11,4 +12,4 @@ function App() {
 	);
 }
 
-export default App;
+export default withLayout(App);
